@@ -3,12 +3,12 @@
 </div>
 <div class="col-sm-6">
   <h1 class="title">Learn to cook cutting edge food</h1>
-  <h1>Our Courses</h1>
-  <% offeredCourses.forEach(course => { %>
+  <h1>List of artists</h1>
+  <% artists.forEach(artist => { %>
   <h5>
-    <%= course.title %>
+    <%= artist.title %>
   </h5>
   <span>$
-    <%= course.cost %> </span>
+    <%= artist.cost %> </span>
   <% }); %>
 </div>

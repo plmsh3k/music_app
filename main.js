@@ -12,7 +12,7 @@ const express = require("express"),
   errorController = require("./controllers/errorController"),
   homeController = require("./controllers/homeController"),
   usersController = require("./controllers/usersController"),
-  authorsController = require("./controllers/authorsController");
+  artistsController = require("./controllers/artistsController");
 
 mongoose.Promise = global.Promise;
 
@@ -46,6 +46,7 @@ router.use(express.json());
 router.use(homeController.logRequestPaths);
 
 router.get("/", homeController.index);
+router.get("/artists", artistsController.index, artistsController.indexView);
 
 router.use(errorController.logErrors);
 router.use(errorController.respondNoResourceFound);
