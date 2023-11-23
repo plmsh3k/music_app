@@ -1,0 +1,22 @@
+{
+  "name": "music_app",
+  "version": "1.0.0",
+  "description": "Music_applicaiton",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plmsh3k/music_app.git"
+  },
+  "author": "Malish Daniil",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/plmsh3k/music_app/issues"
+  },
+  "homepage": "https://github.com/plmsh3k/music_app#readme",
+  "dependencies": {
+    "node": "^21.2.0"
+  }
+}
