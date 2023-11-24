@@ -42,5 +42,77 @@ module.exports = {
         let redirectPath = res.locals.redirect;
         if (redirectPath !== undefined) res.redirect(redirectPath);
         else next();
+    },
+    edit: (req, res, next) => {
+      let songId = req.params.id;
+      Song.findById(songId)
+        .then(song => {
+          res.render("songs/edit", {
+            song: song
+          });
+        })
+        .catch(error => {
+          console.log(`Error fetching course by ID: ${error.message}`);
+          next(error);
+        });
+    },
+    update: (req, res, next) => {
+      let songId = req.params.id,
+        songParams = {
+          name: req.body.name,
+          artist: req.body.artist,
+          rating: req.body.rating,
+          duration: req.body.duration
+        };
+  
+      Song.findByIdAndUpdate(songId, {
+        $set: songParams
+      })
+        .then(song => {
+          res.locals.redirect = `/songs/${songId}`;
+          res.locals.song = song;
+          next();
+        })
+        .catch(error => {
+          console.log(`Error updating course by ID: ${error.message}`);
+          next(error);
+        });
+    },
+
+    delete: (req, res, next) => {
+      let songId = req.params.id;
+    
+      Song.findOneAndDelete({ _id: songId })
+        .then(() => {
+          res.locals.redirect = "/songs";
+          next();
+        })
+        .catch(error => {
+          console.log(`Error deleting song by ID: ${error.message}`);
+          next();
+        });
+    },
+
+    redirectView: (req, res, next) => {
+      let redirectPath = res.locals.redirect;
+      if (redirectPath !== undefined) res.redirect(redirectPath);
+      else next();
+    },
+
+    show: (req, res, next) => {
+      let songId = req.params.id;
+      Song.findById(songId)
+        .then(song => {
+          res.locals.song = song;
+          next();
+        })
+        .catch(error => {
+          console.log(`Error fetching course by ID: ${error.message}`);
+          next(error);
+        });
+    },
+  
+    showView: (req, res) => {
+      res.render("songs/show");
     }
 };

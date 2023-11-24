@@ -63,7 +63,10 @@ router.get("/songs", songsController.index, songsController.indexView);
 router.get("/songs/new", songsController.new);
 router.post("/songs/create", songsController.create, songsController.redirectView);
 
-
+router.get("/songs/:id/edit", songsController.edit);
+router.put("/songs/:id/update", songsController.update, songsController.redirectView);
+router.delete("/songs/:id/delete", songsController.delete, songsController.redirectView);
+router.get("/songs/:id", songsController.show, songsController.showView);
 
 router.use(errorController.logErrors);
 router.use(errorController.respondNoResourceFound);
