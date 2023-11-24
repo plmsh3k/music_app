@@ -1,0 +1,30 @@
+<h1 class="center">Song's information
+  <%= song.name %>
+</h1>
+
+<table class="table">
+  <tr>
+    <th>Artist</th>
+    <td>
+      <%= song.artist%>
+    </td>
+  </tr>
+  <tr>
+    <th>Rating</th>
+    <td>
+      <%= song.rating%>
+    </td>
+  </tr>
+</table>
+
+<div>
+  <a class="button" href="/songs">View all songs</a>
+</div>
+<div>
+  <a class="button" href="<%=`/songs/${song._id}/edit`%>">
+    Edit Songs Details
+  </a>
+</div>
+<div>
+  <a class="button" href="<%= `/songs/${song._id}/delete?_method=DELETE` %>" onclick="return confirm('Are you sure you want to delete this record?')">Delete</a>
+</div>

@@ -1,0 +1,33 @@
+<h2>Artists Table</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Song name</th>
+      <th>Artist</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% songs.forEach(song => { %>
+    <tr>
+      <td>
+        <a href="<%= `/songs/${song._id}` %>">
+          <%= song.name %>
+        </a>
+      </td>
+      <td>
+        <%= song.artist %>
+      </td>
+      <td>
+        <a href="<%=`songs/${song._id}/edit`%>">
+          Edit
+        </a>
+      </td>
+      <td>
+        <a href="<%= `songs/${song._id}/delete?_method=DELETE` %>" onclick="return confirm('Are you sure you want to delete this record?')">Delete</a>
+      </td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
