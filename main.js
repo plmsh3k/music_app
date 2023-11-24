@@ -12,7 +12,7 @@ const express = require("express"),
   errorController = require("./controllers/errorController"),
   homeController = require("./controllers/homeController"),
   usersController = require("./controllers/usersController"),
-  artistsController = require("./controllers/artistsController");
+  songsController = require("./controllers/songsController");
 
 mongoose.Promise = global.Promise;
 
@@ -29,11 +29,24 @@ db.once("open", () => {
 app.set("port", process.env.PORT || 3000);
 app.set("view engine", "ejs");
 
+router.use(express.static("public"));
+router.use(layouts);
 router.use(
-    express.urlencoded({
-      extended: false
-    })
+  express.urlencoded({
+    extended: false
+  })
 );
+
+router.use(cookieParser("secret_passcode"));
+router.use(expressSession({
+  secret: "secret-passcode",
+  cookie: {
+    maxAge: 4000000
+  },
+  resave: false,
+  saveUninitialized: false
+}));
+router.use(connectFlash())
   
 
 router.use(
@@ -46,7 +59,11 @@ router.use(express.json());
 router.use(homeController.logRequestPaths);
 
 router.get("/", homeController.index);
-router.get("/artists", artistsController.index, artistsController.indexView);
+router.get("/songs", songsController.index, songsController.indexView);
+router.get("/songs/new", songsController.new);
+router.post("/songs/create", songsController.create, songsController.redirectView);
+
+
 
 router.use(errorController.logErrors);
 router.use(errorController.respondNoResourceFound);
