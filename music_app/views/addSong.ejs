@@ -1,0 +1,97 @@
+<!-- addSong.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a New Song</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Add a New Song</h1>
+
+
+    <form action="/songs" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="artist">Artist:</label>
+        <input type="text" id="artist" name="artist" required>
+
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" name="genre">
+
+        <label for="releaseDate">Release Date:</label>
+        <input type="date" id="releaseDate" name="releaseDate">
+
+        <label for="duration">Duration (seconds):</label>
+        <input type="number" id="duration" name="duration">
+
+        <label for="album">Album:</label>
+        <input type="text" id="album" name="album">
+
+        <label for="lyric">Lyric:</label>
+        <textarea name="lyric" id="lyric" rows="4"></textarea>
+
+        <label for="video">Link to audio video or music video:</label>
+        <input type="url" id="video" name="video">
+
+
+        <button type="submit">Add Song</button>
+    </form>
+
+    <!-- Add your other HTML content, forms, or additional elements here -->
+
+    <!-- Add your JavaScript links or scripts here -->
+</body>
+</html>
