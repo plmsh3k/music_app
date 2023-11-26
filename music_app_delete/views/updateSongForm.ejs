@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Song Information</title>
+    <link rel="stylesheet" href="/styles/main.css"> <!-- Adjust the path based on your project structure -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            color: #555;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4285f4;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2a5db0;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #4285f4;
+            text-decoration: none;
+        }
+
+        a button {
+            background-color: #4285f4;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        a button:hover {
+            background-color: #2a5db0;
+        }
+
+        .updated-info {
+            margin-top: 30px;
+            border-top: 2px solid #ccc;
+            padding-top: 20px;
+        }
+
+        .updated-info h2 {
+            color: #333;
+        }
+
+        .updated-info p {
+            margin: 10px 0;
+        }
+
+        .updated-info a {
+            color: #4285f4;
+            text-decoration: none;
+        }
+
+        .updated-info a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Update Song Information</h1>
+
+    <form action="/songs/<%= song._id %>" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="updatedInfo[name]" value="<%= song.name %>">
+
+        <label for="artist">Artist:</label>
+        <input type="text" id="artist" name="updatedInfo[artist]" value="<%= song.artist %>">
+
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" name="updatedInfo[genre]" value="<%= song.genre || '' %>">
+
+        <label for="releaseDate">Release Date:</label>
+        <input type="date" id="releaseDate" name="updatedInfo[releaseDate]"
+            value="<%= song.releaseDate ? song.releaseDate.toISOString().split('T')[0] : '' %>">
+
+        <label for="duration">Duration (in seconds):</label>
+        <input type="number" id="duration" name="updatedInfo[duration]" value="<%= song.duration || '' %>">
+
+        <label for="album">Album:</label>
+        <input type="text" id="album" name="updatedInfo[album]" value="<%= song.album || '' %>">
+        
+        <label for="rate">Rating (from 1 to 5):</label>
+        <input type="number" id="rate" name="updatedInfo[rate]" value="<%= song.rate || '' %>">
+
+        <label for="lyric">Lyric:</label>
+        <textarea id="lyric" name="updatedInfo[lyric]"><%= song.lyric || '' %></textarea>
+
+        <label for="video">Video URL:</label>
+        <input type="url" id="video" name="updatedInfo[video]" value="<%= song.video || '' %>">
+
+        <button type="submit">Update Song</button>
+    </form>
+    
+
+    <a href="/songs">
+        <button>Back to Songs</button>
+    </a>
+
+    
+</body>
+
+</html>
