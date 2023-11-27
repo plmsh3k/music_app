@@ -6,9 +6,21 @@
     <label for="inputArtist">Artist</label>
     <input type="text" name="artist" id="inputArtist" class="form-control" value="<%= song.artist %>" placeholder="Artist" required>
     <label for="inputRating">Rating</label>
-    <input type="text" name="rating" id="inputRating" class="form-control" value="<%= song.rating %>" placeholder="Rating" required>
+    <input type="range" name="rating" id="inputRating" min="1" max="5" step="1" value="<%= song.rating %>">
+    <span id="selectedRating"><%= song.rating %></span><br />
     <label for="inputDuration">Duration</label>
     <input type="text" name="duration" id="inputDuration"  class="form-control" value="<%= song.duration %>" placeholder="Duration" required>
     <br /><button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
   </form>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const ratingInput = document.getElementById('inputRating');
+    const selectedRating = document.getElementById('selectedRating');
+  
+    ratingInput.addEventListener('input', () => {
+      selectedRating.textContent = ratingInput.value;
+    });
+  });
+</script>

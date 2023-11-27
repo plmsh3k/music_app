@@ -25,7 +25,8 @@ module.exports = {
             name: req.body.name,
             artist: req.body.artist,
             rating: req.body.rating,
-            duration: req.body.duration
+            duration: req.body.duration,
+            updatedBy: req.user._id
         };
         Song.create(songParams)
           .then(song => {
@@ -66,7 +67,10 @@ module.exports = {
         };
   
       Song.findByIdAndUpdate(songId, {
-        $set: songParams
+        $set: {
+            ...songParams,
+            updatedAt: Date.now(),
+            updatedBy: req.user._id}
       })
         .then(song => {
           res.locals.redirect = `/songs/${songId}`;
@@ -101,7 +105,7 @@ module.exports = {
 
     show: (req, res, next) => {
       let songId = req.params.id;
-      Song.findById(songId)
+      Song.findById(songId).populate('updatedBy')
         .then(song => {
           res.locals.song = song;
           next();

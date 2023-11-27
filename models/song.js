@@ -19,8 +19,14 @@ const songSchema = new mongoose.Schema({
   duration: {
     type: Number,
     min: 1,
-    max: 5
-  }
+    max: 1800
+  },
+  updatedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
+}, {
+  timestamps: true
 });
 
 module.exports = mongoose.model("Song", songSchema);
