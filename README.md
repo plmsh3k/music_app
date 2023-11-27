@@ -1,5 +1,5 @@
 # Music Application
-This is Music Application, taht been implemented to provide users with a conviniet to add, share to others their favorite songs!
+Welcome to our Music Application, designed to offer users a seamless experience for effortlessly adding and sharing their favorite songs! Our platform has been carefully crafted to connect music enthusiasts, fostering a vibrant community where the joy of music knows no bounds.
 ## Project structure
 ```
 +---controllers
