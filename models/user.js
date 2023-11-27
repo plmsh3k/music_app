@@ -3,6 +3,7 @@
 const mongoose = require("mongoose"),
   { Schema } = mongoose,
   Subscriber = require("./subscriber"),
+  passportLocalMongoose = require("passport-local-mongoose"),
   userSchema = new Schema(
     {
       name: {
@@ -38,6 +39,11 @@ const mongoose = require("mongoose"),
 
 userSchema.virtual("fullName").get(function() {
   return `${this.name.first} ${this.name.last}`;
+});
+
+
+userSchema.plugin(passportLocalMongoose, {
+  usernameField: "email"
 });
 
 module.exports = mongoose.model("User", userSchema);
