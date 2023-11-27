@@ -1,6 +1,7 @@
 "use strict";
 
 const User = require("../models/user"),
+  passport = require("passport"),
   getUserParams = body => {
     return {
       name: {
@@ -35,20 +36,19 @@ module.exports = {
     res.render("users/new");
   },
   create: (req, res, next) => {
-    let userParams = getUserParams(req.body);
-    User.create(userParams)
-      .then(user => {
+    if (req.skip) next();
+    let newUser = new User( getUserParams(req.body) );
+    User.register(newUser, req.body.password, (error, user) => {
+      if (user) {
         req.flash("success", `${user.fullName}'s account created successfully!`);
         res.locals.redirect = "/users";
-        res.locals.user = user;
         next();
-      })
-      .catch(error => {
-        console.log(`Error saving user: ${error.message}`);
-        res.locals.redirect = "/users/new";
+      } else {
         req.flash("error", `Failed to create user account because: ${error.message}.`);
+        res.locals.redirect = "/users/new";
         next();
-      });
+      }
+    });
   },
   redirectView: (req, res, next) => {
     let redirectPath = res.locals.redirect;
@@ -101,7 +101,7 @@ module.exports = {
   },
   delete: (req, res, next) => {
     let userId = req.params.id;
-    User.findByIdAndRemove(userId)
+    User.findByIdAndDelete(userId)
       .then(() => {
         res.locals.redirect = "/users";
         next();
@@ -110,5 +110,23 @@ module.exports = {
         console.log(`Error deleting user by ID: ${error.message}`);
         next();
       });
+  },
+  
+  login: (req, res) => {
+    res.render("users/login");
+  },
+
+  authenticate: passport.authenticate("local", {
+    failureRedirect: "/users/login",
+    failureFlash: "Failed to login.",
+    successRedirect: "/",
+    successFlash: "Logged in!"
+  }),
+  
+  logout: (req, res, next) => {
+    req.logout(function(err) {
+      if (err) { return next(err); }
+      return res.redirect('/');
+    });
   }
 };

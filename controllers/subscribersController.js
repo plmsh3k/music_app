@@ -30,7 +30,14 @@ module.exports = {
   },
 
   saveSubscriber: (req, res) => {
-    let newSubscriber = new getSubscribersParams(req.body);
+    let newSubscriber = new Subscriber({
+      name: {
+        first: req.body.first,
+        last: req.body.last
+      },
+      email: req.body.email,
+      zipCode: req.body.zipCode
+    });
     newSubscriber
       .save()
       .then(result => {
