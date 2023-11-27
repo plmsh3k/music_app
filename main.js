@@ -12,7 +12,8 @@ const express = require("express"),
   errorController = require("./controllers/errorController"),
   homeController = require("./controllers/homeController"),
   usersController = require("./controllers/usersController"),
-  songsController = require("./controllers/songsController");
+  songsController = require("./controllers/songsController"),
+  subscribersController = require("./controllers/subscribersController");
 
 mongoose.Promise = global.Promise;
 
@@ -63,6 +64,42 @@ router.get("/songs", songsController.index, songsController.indexView);
 router.get("/songs/new", songsController.new);
 router.post("/songs/create", songsController.create, songsController.redirectView);
 
+router.get("/songs/:id/edit", songsController.edit);
+router.put("/songs/:id/update", songsController.update, songsController.redirectView);
+router.delete("/songs/:id/delete", songsController.delete, songsController.redirectView);
+router.get("/songs/:id", songsController.show, songsController.showView);
+
+
+router.get("/users", usersController.index, usersController.indexView);
+router.get("/users/new", usersController.new);
+router.post("/users/create", usersController.create, usersController.redirectView);
+router.get("/users/:id/edit", usersController.edit);
+router.put("/users/:id/update", usersController.update, usersController.redirectView);
+router.delete("/users/:id/delete", usersController.delete, usersController.redirectView);
+router.get("/users/:id", usersController.show, usersController.showView);
+
+
+router.get("/subscribers", subscribersController.index, subscribersController.indexView);
+router.get("/subscribers/new", subscribersController.new);
+router.post(
+  "/subscribers/create",
+  subscribersController.create,
+  subscribersController.redirectView
+);
+router.get("/subscribers/:id/edit", subscribersController.edit);
+router.put(
+  "/subscribers/:id/update",
+  subscribersController.update,
+  subscribersController.redirectView
+);
+router.delete(
+  "/subscribers/:id/delete",
+  subscribersController.delete,
+  subscribersController.redirectView
+);
+router.get("/subscribers/:id", subscribersController.show, subscribersController.showView);
+
+router.post("/subscribe", subscribersController.saveSubscriber);
 
 
 router.use(errorController.logErrors);

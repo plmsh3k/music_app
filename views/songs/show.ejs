@@ -1,8 +1,12 @@
-<h1 class="center">Song's information
-  <%= song.name %>
-</h1>
+<h1 class="center">Song's information</h1>
 
 <table class="table">
+  <tr>
+    <th>Song Name</th>
+    <td>
+      <%= song.name%>
+    </td>
+  </tr>
   <tr>
     <th>Artist</th>
     <td>
@@ -13,6 +17,12 @@
     <th>Rating</th>
     <td>
       <%= song.rating%>
+    </td>
+  </tr>
+  <tr>
+    <th>Duration</th>
+    <td>
+      <%= song.duration%>
     </td>
   </tr>
 </table>
