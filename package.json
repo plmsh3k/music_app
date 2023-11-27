@@ -27,6 +27,7 @@
     "http-status-codes": "^2.3.0",
     "method-override": "^3.0.0",
     "mongoose": "^8.0.1",
+    "music_app": "file:music_app-1.0.0.tgz",
     "node": "^21.2.0",
     "nodemon": "^3.0.1",
     "passport": "^0.6.0",

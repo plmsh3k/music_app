@@ -25,8 +25,19 @@
       <%= song.duration%>
     </td>
   </tr>
+  <tr>
+    <th>Updated By</th>
+    <td><%= song.updatedBy ? song.updatedBy.fullName : 'N/A' %></td>
+  </tr>
+  <tr>
+    <th>Created At</th>
+    <td><%= song.createdAt ? song.createdAt.toLocaleString() : 'N/A' %></td>
+  </tr>
+  <tr>
+    <th>Last Updated At</th>
+    <td><%= song.updatedAt ? song.updatedAt.toLocaleString() : 'N/A' %></td>
+  </tr>
 </table>
-
 <div>
   <a class="button" href="/songs">View all songs</a>
 </div>
